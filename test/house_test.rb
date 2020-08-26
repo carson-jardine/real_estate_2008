@@ -8,11 +8,15 @@ class HouseTest < Minitest::Test
   def test_it_exists
     house = House.new("$400000", "123 sugar lane")
 
-    assert_instance_of House, house 
+    assert_instance_of House, house
   end
 
+  def test_it_has_a_price
+    house = House.new("$400000", "123 sugar lane")
+
+    assert_equal 400000, house.price
+  end
 end
-#=> #<House:0x00007fccd30375f8...>
 
 # house.price
 #=> 400000
