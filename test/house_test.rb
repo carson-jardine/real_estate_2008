@@ -139,11 +139,3 @@ class HouseTest < Minitest::Test
     assert_equal expected, house.rooms_by_category
   end
 end
-
-
-
- # house.rooms_sorted_by_area
-#=> [#<Room:0x00007fccd297dc30...>, #<Room:0x00007fccd383c2d0...>, #<Room:0x00007fccd2985f48...>, #<Room:0x00007fccd29b5720...>]
-
- # house.rooms_by_category
-#=> {:bedroom=>[#<Room:0x00007fccd29b5720...>, #<Room:0x00007fccd2985f48...>],
