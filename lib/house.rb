@@ -28,6 +28,17 @@ class House
   def area
     rooms.sum do |room|
       room.area
-    end 
+    end
+  end
+
+  def details
+    details = {
+      "price" => price,
+      "address" => address
+    }
+  end
+
+  def price_per_square_foot
+    (price.to_f / area).round(2)
   end
 end
