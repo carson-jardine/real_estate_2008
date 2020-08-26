@@ -80,36 +80,59 @@ class HouseTest < Minitest::Test
   end
 
   def test_it_can_find_details
+    house_1 = House.new("$400000", "123 sugar lane")
+    house_2 = House.new("$600000", "123 mountain lane")
+
+    expected_1 = ({"price" => 400000, "address" => "123 sugar lane"})
+    expected_2 = ({"price" => 600000, "address" => "123 mountain lane"})
+    assert_equal expected_1, house_1.details
+    assert_equal expected_2, house_2.details
+  end
+
+  def test_price_per_square_foot
     house = House.new("$400000", "123 sugar lane")
+    room_1 = Room.new(:bedroom, 10, '13')
+    room_2 = Room.new(:bedroom, 11, '15')
+    room_3 = Room.new(:living_room, 25, '15')
+    room_4 = Room.new(:basement, 30, '41')
 
-    expected = ({"price" => 400000, "address" => "123 sugar lane"})
+    house.add_room(room_1)
+    house.add_room(room_2)
+    house.add_room(room_3)
+    house.add_room(room_4)
 
-    assert_equal expected, house.details
+    assert_equal 210.53, house.price_per_square_foot
   end
 end
 
+ # house = House.new("$400000", "123 sugar lane")
+#=> #<House:0x00007fccd30375f8...>
 
+ # room_1 = Room.new(:bedroom, 10, '13')
+#=> #<Room:0x00007fccd29b5720...>
 
+ # room_2 = Room.new(:bedroom, 11, '15')
+#=> #<Room:0x00007fccd2985f48...>
 
+ # room_3 = Room.new(:living_room, 25, '15')
+#=> #<Room:0x00007fccd383c2d0 @category=:living_room, @length=25, @width=15>
 
-#=> #<Room:0x00007fccd383c2d0...>
+ # room_4 = Room.new(:basement, 30, '41')
+#=> #<Room:0x00007fccd297dc30 @category=:basement, @length=30, @width=41>
 
-#=> #<Room:0x00007fccd297dc30...>
+ # house.add_room(room_4)
 
-# house.add_room(room_1)
+ # house.add_room(room_1)
 
-# house.add_room(room_2)
+ # house.add_room(room_3)
 
+ # house.add_room(room_2)
 
+ # house.price_per_square_foot
+#=> 210.53
 
-# house.rooms_from_category(:bedroom)
-#=> [#<Room:0x00007fccd29b5720...>, #<Room:0x00007fccd2985f48...>]
+ # house.rooms_sorted_by_area
+#=> [#<Room:0x00007fccd297dc30...>, #<Room:0x00007fccd383c2d0...>, #<Room:0x00007fccd2985f48...>, #<Room:0x00007fccd29b5720...>]
 
-# house.rooms_from_category(:basement)
-#=> [#<Room:0x00007fccd297dc30...>]
-
-# house.area
-#=> 1900
-
-# house.details
-#=> {"price" => 400000, "address" => "123 sugar lane"}
+ # house.rooms_by_category
+#=> {:bedroom=>[#<Room:0x00007fccd29b5720...>, #<Room:0x00007fccd2985f48...>],
