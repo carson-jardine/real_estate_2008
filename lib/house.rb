@@ -22,6 +22,12 @@ class House
   def rooms_from_category(category)
     rooms.find_all do |room|
       room.category == category
+    end
+  end
+
+  def area
+    rooms.sum do |room|
+      room.area
     end 
   end
 end
